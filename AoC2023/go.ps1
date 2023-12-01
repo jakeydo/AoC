@@ -1,10 +1,10 @@
 $time = get-date
 $time = [TimeZoneInfo]::ConvertTimeBySystemTimeZoneId($time, 'Eastern Standard Time')
 $day = get-date $time -Format "dd"
-$day = "05"
+#$day = "05"
 $daynozero = $day.trimstart('0')
 $year = get-date $time -Format "yyyy"
-$year = "2022"
+#$year = "2022"
 $newfolder = "/AoC" + $year + "d" + $day
 $basepath = Convert-Path .
 $newpath = $basepath + $newfolder
