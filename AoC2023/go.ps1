@@ -38,7 +38,7 @@ for($i=0; $i -lt $js.Length; $i++){
 	}
 }
 $testdata = $js[$testdataindex].innerText
-$testdata | Out-File $dest
+$testdata | Out-File $dest -Encoding ASCII
 
 
 $dest = $newpath + "/real.txt"
