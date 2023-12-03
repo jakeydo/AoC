@@ -36,9 +36,6 @@ for line_number, line in enumerate(lines):
     line = line.strip()
     
     for i, c in enumerate(line):
-        if i == 10:
-            print("!!!!!!!!")
-            print(c)
         universe_coords.add((line_number,i))
         if c.isdigit():
             buffer = buffer + c
@@ -89,9 +86,34 @@ for n in numbers:
             part_number = True
             break
     if part_number:
-        part_numbers.append(n.value)
+        part_numbers.append(n)
+
+pn_sum = 0
+for pn in part_numbers:
+    pn_sum += pn.value
+
+print(f"Part 1 answer: {pn_sum}")
+
+potential_gears = set()
+for x,y in universe_coords:
+    if lines[x][y] == "*":
+        potential_gears.add((x,y))
+
+actual_gears = set()
+sum_gear_ratios = 0
+for pg in potential_gears:
+    adjacent_pns = set()
+    gear_ratio = 1
+    for n in part_numbers:
+        adj = adjacent_coordinates(n,universe_coords)
+        if pg in adj:
+            adjacent_pns.add(n)
+    if len(adjacent_pns) == 2:
+        actual_gears.add(pg)
+        for pn in adjacent_pns:
+            gear_ratio = gear_ratio * pn.value
+        sum_gear_ratios += gear_ratio
+    
 
 
-
-print(f"Part 1 answer: {sum(part_numbers)}")
-print(f"Part 2 answer: {0}")
+print(f"Part 2 answer: {sum_gear_ratios}")
