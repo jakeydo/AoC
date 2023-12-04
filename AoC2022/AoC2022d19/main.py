@@ -77,19 +77,26 @@ def max_geodes_possible(bp,time,ore_robots,clay_robots,obsidian_robots,geode_rob
         return geodes + geode_robots
 
     new_time = time-1
-    new_ore = ore + ore_robots
-    new_clay = clay + clay_robots
-    new_obsidian = obsidian + obsidian_robots
-    new_geodes = geodes + geode_robots
     
+    new_ore = ore + ore_robots
+    new_ore = min(new_ore, 3*bp.max_ore_needed)
+    
+    new_clay = clay + clay_robots
+    new_clay = min(new_clay, 3*bp.max_clay_needed)
+    
+    new_obsidian = obsidian + obsidian_robots
+    new_obsidian = min(new_obsidian, 3*bp.max_obsidian_needed)
+    
+    new_geodes = geodes + geode_robots
+    """
     max_possible_geodes = geodes + (new_time * geode_robots) + triangle[new_time]
 
     #max_ore_needed = max(bp.ore_robot_ore_cost,bp.clay_robot_ore_cost,bp.obsidian_robot_ore_cost,bp.geode_robot_ore_cost)
-    
+    """ 
     max_geodes = max_geodes_possible(bp,new_time,ore_robots,clay_robots,obsidian_robots,geode_robots,new_ore,new_clay,new_obsidian,new_geodes)
-    if max_possible_geodes <= max_geodes:
-        return max_geodes
- 
+    #if max_possible_geodes <= max_geodes:
+    #    return max_geodes
+   
     if ore_robots < bp.max_ore_needed and ore >= bp.ore_robot_ore_cost:
         #max_geodes = max(max_geodes,max_geodes_possible(bp,new_time,ore_robots,clay_robots,obsidian_robots,geode_robots,new_ore,new_clay,new_obsidian,new_geodes))
         this_ore = new_ore - bp.ore_robot_ore_cost
@@ -122,8 +129,10 @@ bp = blueprints[1]
 sum_ql = 0
 bp_id = 1
 
+max_geodes = [1,1,1]
 for i in range(3):
-    max_geodes = [0,0,0]
+    if i > len(blueprints)-1:
+        break
     bp = blueprints[i]
     start = time.time()
     mg = max_geodes_possible(bp,32,1,0,0,0,0,0,0,0)
