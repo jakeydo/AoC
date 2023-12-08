@@ -1,10 +1,12 @@
 import sys
 from math import lcm
+import time
 #from collections import defaultdict
 #from os import system
 #import time
 #from functools import cache
 #sys.setrecursionlimit(10**7)
+start = time.time()
 args = str(sys.argv)
 if ("test" in args):
     f = open("test2.txt")
@@ -65,5 +67,6 @@ answer = lcm(*cycle_lengths)
 
 
 #put the code here
-
+end = time.time()
 print(f"Part 2 answer: {answer}")
+print(f"time elapsed: {end-start}")
