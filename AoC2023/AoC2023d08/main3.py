@@ -30,7 +30,7 @@ for node in temp_starting_nodes:
 
 current_nodes = [n for n in starting_nodes]
 
-print(current_nodes)
+#print(current_nodes)
 
 cycle_lengths = []
 
@@ -54,8 +54,13 @@ for current_node in current_nodes:
     cycle_lengths.append(step_count)
     step_count = 0
     
-print(cycle_lengths)
+#print(cycle_lengths)
 answer = lcm(*cycle_lengths)
+#math.lcm() takes multiple integers as arguments like lcm(x, y, z, a, b, c,...)
+#it doesn't work with a list/array of integers
+#cycle_lengths is a list [x, y, z]
+#using "*cycle_lengths" unrolls it to x, y, z
+#(there is a probably a different/official name for "unrolls")
 
 
 
