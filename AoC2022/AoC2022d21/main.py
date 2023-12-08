@@ -106,7 +106,7 @@ test_start = 3378273370500
 for i in range(test_start,test_start+1000):
     monkeys = {}
     diff = diff_from_humn(monkeys,i,x,y)
-    print(f"humn:{i} diff:{diff}")
+    #print(f"humn:{i} diff:{diff}")
     if diff == 0:
         print(f"part 2 answer: {i}")
         break
