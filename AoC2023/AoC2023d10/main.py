@@ -2,9 +2,10 @@ import sys
 import copy
 #from collections import defaultdict
 #from os import system
-#import time
+import time
 #from functools import cache
 #sys.setrecursionlimit(10**7)
+go = time.time()
 args = str(sys.argv)
 real_start ="S"
 if ("test" in args):
@@ -162,3 +163,5 @@ for x in range(len(maze)):
 
 
 print(f"Part 2 answer: {inside_count}")
+end = time.time()
+print(f"elapsed time for both parts: {end-go}")
