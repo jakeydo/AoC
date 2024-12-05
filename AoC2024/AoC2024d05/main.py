@@ -72,6 +72,28 @@ print(f"Part 1 answer: {sum_middle}")
 
 bad_sum_middle = 0
 for b in bad_updates:
+    check = True
+    indices = {}
+    for i,page in enumerate(b):
+        indices[page] = i
+    while check:
+        check = False
+        for r in rules:
+            x,y = r
+            if (x in b) and (y in b):
+                #print(f"x:{x} y:{y} b:{b} indices:{indices}")
+                if not indices[x] < indices[y]:
+                    temp = indices[x]
+                    indices[x] = indices[y]
+                    indices[y] = temp
+                    check = True
+    #print(indices)
+    for page,i in indices.items():
+       # print(f"i:{i} page:{page}")
+        if i == len(b) // 2:
+            #print(f"adding stuff i:{i} page:{page}")
+            bad_sum_middle += page
+"""
     perms = permutations(b)
     
     
@@ -92,6 +114,8 @@ for b in bad_updates:
                 found = True
                 mid = len(p) // 2
                 bad_sum_middle += p[mid]
+           
+"""
            
 """
     again = True
