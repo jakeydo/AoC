@@ -52,6 +52,9 @@ iwr -uri $realdataurl -websession $session -outfile $dest -UserAgent "Mozilla/5.
 
 cd $newpath
 ls
+npp .\main.py
+npp .\test.txt
+npp .\real.txt
 
 #$wc = New-Object System.Net.WebClient
 #$wc.Headers.Add([System.Net.HttpRequestHeader]::UserAgent, "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Safari/537.36 OPR/102.0.0.0 (Edition beta)")
