@@ -29,9 +29,30 @@ for line in lines:
     if dial == 0:
         zero_count +=1
     print(dial)
-#put the code here
 
 print(f"Part 1 answer: {zero_count}")
 
+dial = 50
+zero_count = 0
 
-print(f"Part 2 answer: {0}")
+for line in lines:
+    line = line.strip()
+    number = line[1:]
+    number = int(number)
+    delta = 0
+    if line[0] == "L":
+        delta = -1
+    else:
+        delta = 1
+    for i in range(number):
+        dial += delta
+        if dial == -1:
+            dial = 99
+        if dial == 100:
+            dial = 0
+        if dial == 0:
+            zero_count +=1
+    print(dial)
+
+
+print(f"Part 2 answer: {zero_count}")
