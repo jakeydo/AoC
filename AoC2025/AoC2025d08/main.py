@@ -4,6 +4,7 @@ import sys
 #import time
 #from functools import cache
 #sys.setrecursionlimit(10**7)
+#from copy import deepcopy
 args = str(sys.argv)
 if ("test" in args):
     f = open("test.txt")
@@ -25,12 +26,14 @@ for line in lines:
     z = int(z)
     jbs.append((x,y,z))
 
+unc_jbs = set(jbs)
+
 min_d = 1000000000000
 min_ds = []
 connected_pairs = []
 min_pair = set()
 
-for x in range(loops):
+for x in range(loops*10):
     min_ds.append(min_d)
     connected_pairs.append(((0,0,0),(0,0,0)))
 
@@ -56,8 +59,32 @@ for i in range(len(jbs)):
 #print(connected_pairs)
 #put the code here
 
+connected_pairs = [x for _, x in sorted(zip(min_ds,connected_pairs))]
+
 for cp in connected_pairs:
     p1,p2 = cp
+    
+    if p1 in unc_jbs:
+        unc_jbs.remove(p1)
+    if p2 in unc_jbs:
+        unc_jbs.remove(p2)
+    """
+    print("circuits:")
+    print(circuits)
+    print("unc_jbs:")
+    print(unc_jbs)
+    print("***")
+    print()
+    """
+    if len(circuits) == 1 and len(unc_jbs) == 0:
+        
+        x1,y1,z1 = p1
+        x2,y2,z2 = p2
+        #print(x1)
+        #print(x2)
+        print(f"part 2 answer: {x1*x2}")
+        break
+    
     #print(f"p1: {p1}")
     #print(f"p2: {p2}")
     #print()
